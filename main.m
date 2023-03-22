@@ -9,22 +9,22 @@ fitness_pbest = zeros(10,1);
 w = 0.9;
 
 
-for j=1:500
+for j=1:50
 
   for i=1:10
     fitness_enxame(i,1) = enxame(i,1)^2 - 10*cos(2*pi*enxame(i,1)) + enxame(i,2)^2 - 10*cos(2*pi*enxame(i,2));
     fitness_pbest(i,1) = pbest(i,1)^2 - 10*cos(2*pi*pbest(i,1)) + pbest(i,2)^2 - 10*cos(2*pi*pbest(i,2));
 
     if (fitness_enxame(i,1)<fitness_pbest(i,1))
-      fitness_pbest(i,:) = fitness_enxame(i,:);
+      pbest(i,:) = enxame(i,:);
     endif
   endfor
 
   [valor, indice] = min(fitness_pbest);
-  fitness_gbest = gbest(1,1)^2 - 10*cos(2*pi*gbest(1,1)) + gbest(1,2)^2 - 10*cos(2*pi*gbest(1,2));
+  fitness_gbest = gbest(1,1)^2 - 10*cos(2*pi*gbest(1,1)) + gbest(1,2)^2 - 10*cos(2*pi*gbest(1,2))
 
   if (valor < fitness_gbest)
-    fitness_gbest(1,:) = fitness_pbest(indice,:);
+    gbest(1,:) = pbest(indice,:);
   endif
 
   for i=1:10
@@ -43,4 +43,3 @@ for j=1:500
 endfor
 
 
-velocidade
