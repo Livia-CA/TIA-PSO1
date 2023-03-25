@@ -4,8 +4,8 @@ enxame = rand(TMNH,2);
 velocidade = rand(TMNH,2);
 pbest = rand(TMNH,2);
 gbest = rand(1,2);
-fitness_enxame = zeros(10,1);
-fitness_pbest = zeros(10,1);
+fitness_enxame = zeros(TMNH,1);
+fitness_pbest = zeros(TMNH,1);
 w = 0.9;
 
 
@@ -35,11 +35,15 @@ for j=1:50
     enxame(i,:) = enxame(i,:) + velocidade(i,:);
   endfor
 
-  plot(enxame(:,1), enxame(:,2), 'or'); hold on;
-  plot(gbest(1,1), gbest(1,2), 'b*'); hold off;
+  
+  figure(1); plot(enxame(:,1),enxame(:,2),'ro'); axis([-1,1.5,-1,1.5]);drawnow; hold on;
+  figure(1); plot(gbest(:,1),gbest(:,2),'b*'); axis([-1,1.5,-1,1.5]); drawnow; hold off;
 
   w = w*0.95;
 
 endfor
+
+figure(1); plot(enxame(:,1),enxame(:,2),'ro'); axis([-1,1.5,-1,1.5]); drawnow; hold on;
+figure(1); plot(gbest(:,1),gbest(:,2),'b*'); axis([-1,1.5,-1,1.5]); drawnow; hold on;
 
 
